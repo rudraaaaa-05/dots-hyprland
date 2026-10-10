@@ -25,6 +25,8 @@ AbstractOverlayWidget {
     property bool fancyBorders: true
     property bool showCenterButton: false
     property bool showClickabilityButton: true
+    property bool collapseHeaderWhenClosed: false
+    property bool collapseContentPaddingWhenClosed: false
 
     // Defaults n stuff
     required property var modelData
@@ -225,7 +227,9 @@ AbstractOverlayWidget {
                 opacity: GlobalStates.overlayOpen ? 1 : 0
                 Layout.fillWidth: true
                 implicitWidth: titleBarRow.implicitWidth + root.padding * 2
-                implicitHeight: titleBarRow.implicitHeight + root.padding * 2
+                implicitHeight: (root.collapseHeaderWhenClosed && !GlobalStates.overlayOpen)
+                    ? 0
+                    : titleBarRow.implicitHeight + root.padding * 2
                 color: root.fancyBorders ? "transparent" : Appearance.colors.colLayer1Base
                 // border.color: Appearance.colors.colOutlineVariant
                 // border.width: 1
@@ -295,7 +299,9 @@ AbstractOverlayWidget {
                 id: contentContainer
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.margins: root.fancyBorders ? root.padding : 0
+                Layout.margins: root.fancyBorders
+                    ? (root.collapseContentPaddingWhenClosed && !GlobalStates.overlayOpen ? 0 : root.padding)
+                    : 0
                 Layout.topMargin: -border.border.width // Border of a rectangle is drawn inside its bounds, so we do this to make the gap not too big
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 implicitWidth: Math.max(root.persistentStateEntry.width, root.minimumWidth)

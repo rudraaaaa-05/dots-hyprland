@@ -143,8 +143,24 @@ Singleton {
                     property real width: 460
                     property real height: 330
                 }
+                property JsonObject lyrics: JsonObject {
+                    property bool pinned: false
+                    property bool clickthrough: true
+                    property real x: 110
+                    property real y: 150
+                    property real width: 380
+                    property real height: 520
+                }
+                property JsonObject visualizer: JsonObject {
+                    property bool pinned: false
+                    property bool clickthrough: true
+                    property real x: 520
+                    property real y: 150
+                    property real width: 380
+                    property real height: 220
+                }
             }
-
+            
             property JsonObject timer: JsonObject {
                 property JsonObject pomodoro: JsonObject {
                     property bool running: false

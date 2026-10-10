@@ -13,6 +13,8 @@ import qs.modules.ii.overlay.fpsLimiter
 import qs.modules.ii.overlay.recorder
 import qs.modules.ii.overlay.resources
 import qs.modules.ii.overlay.notes
+import qs.modules.ii.overlay.lyrics
+import qs.modules.ii.overlay.visualizer
 
 DelegateChooser {
     id: root
@@ -25,4 +27,6 @@ DelegateChooser {
     DelegateChoice { roleValue: "resources"; Resources {} }
     DelegateChoice { roleValue: "notes"; Notes {} }
     DelegateChoice { roleValue: "volumeMixer"; VolumeMixer {} }
+    DelegateChoice { roleValue: "lyrics"; Lyrics {} }
+    DelegateChoice { roleValue: "visualizer"; Visualizer {} }
 }
